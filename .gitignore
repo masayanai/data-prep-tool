@@ -27,6 +27,7 @@ htmlcov/
 
 # Fixture output (generated, not committed)
 fixtures/output/
+.project-records/
 
 # OS
 .DS_Store

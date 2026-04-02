@@ -92,10 +92,13 @@ State inclusions explicitly in `linked_authoritative_sources`.
 ### Default exclusions (two-tier)
 
 **Narrow gate** — excluded unless the task explicitly calls for
-`audit`, `trace inspection`, or `historical review`:
+`audit`, `trace inspection`, or `historical review`, or the current
+`review mode:` request intentionally includes one concrete
+`.project-records/...` file path:
 
-- `.project-records/` — non-authoritative retained trace storage
-  (see `docs/ai/PROJECT_RECORDS_POLICY.md §14`)
+- `.project-records/` — non-authoritative retained trace storage.
+  In `review mode:`, only the explicitly named file is included; the
+  directory and unnamed sibling files remain excluded.
 - `docs/ai/archive/` — historical artifacts, non-current by default
 
 **Broad gate** — excluded by default, may be included when
