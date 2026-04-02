@@ -122,15 +122,9 @@ Each review loop SHOULD record:
 When persisted or evaluated for persistence, review records should follow
 `docs/ai/PROJECT_RECORDS_POLICY.md`.
 
-Retained review records belong under `.project-records/`, which is
-non-authoritative storage.
-
-AI agents must not read, index, embed, reference, or rely on
-`.project-records/` content unless the task explicitly instructs:
-
-- `audit`
-- `trace inspection`
-- `historical review`
+If a review loop is persisted or handed off through `review mode:`,
+follow `docs/ai/REVIEW_MODE_PROTOCOL.md` for storage layout, exact-path
+handoff, and `.project-records/` access rules.
 
 ---
 

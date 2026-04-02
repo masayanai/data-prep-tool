@@ -63,9 +63,22 @@ When ambiguous, apply the more restrictive (code-changing) mode.
 |--------|--------|
 | Committed repository files needed for the task | **allowed** |
 | Other committed repository files (context, docs) | **allowed** |
-| `.project-records/` content | **forbidden by default**; allowed only when task explicitly instructs `audit`, `trace inspection`, or `historical review` |
+| `.project-records/` content | **forbidden by default**; allowed only when the task explicitly instructs `audit`, `trace inspection`, or `historical review`, or when the current `review mode:` inquiry explicitly names one concrete `.project-records/...` file path |
 | `secrets/`, `.env`, credentials, API keys | **forbidden** |
 | Raw source data from Gmail / Calendar / Schoology | **allowed during adapter development**; must not be persisted outside `secrets/` |
+
+### Review Mode Record Exception
+
+When the current inquiry begins with `review mode:`:
+
+- If no prior `.project-records/...` path is provided, the agent may create
+  one new review-chain sub-directory and one response file under
+  `.project-records/`.
+- If the inquiry explicitly names one concrete `.project-records/...` file,
+  the agent may read only that exact file and may write only one new response
+  file in the same sub-directory.
+- Directory scans, globbing, indexing, embedding, or reliance on unnamed
+  sibling files under `.project-records/` are forbidden.
 
 ### Write Permissions — docs-only mode
 
@@ -73,6 +86,7 @@ When ambiguous, apply the more restrictive (code-changing) mode.
 |--------|--------|
 | Documentation files in task scope | **allowed** |
 | AI-facing instruction files in task scope | **allowed** |
+| Review Mode record file under `.project-records/` | **allowed only per Review Mode Record Exception** |
 | `src/`, `tests/` | **forbidden** |
 | CI workflows, scripts | **forbidden** unless task explicitly reclassifies |
 | `ARCHITECTURE_PRINCIPLES.md`, `docs/data-handling-policy.md` | **forbidden** |
@@ -86,6 +100,7 @@ When ambiguous, apply the more restrictive (code-changing) mode.
 | Task-scoped tests under `tests/` | **allowed** |
 | Task-scoped documentation | **allowed** |
 | Fixture output files (after validation passes) | **allowed** |
+| Review Mode record file under `.project-records/` | **allowed only per Review Mode Record Exception** |
 | CI, scripts, configs | **requires approval** |
 | `ARCHITECTURE_PRINCIPLES.md`, `docs/data-handling-policy.md` | **requires approval** |
 | Secret material, `.env` files, raw PII | **forbidden** |

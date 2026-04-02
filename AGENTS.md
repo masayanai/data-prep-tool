@@ -67,6 +67,27 @@ Refer to as needed:
 
 ---
 
+## Review Mode
+
+When an inquiry begins with `review mode:` (case-insensitive), the agent MUST:
+
+1. Record the full response as a Markdown file under `.project-records/`.
+2. Follow the naming and format rules in `docs/ai/REVIEW_MODE_PROTOCOL.md`.
+3. End the visible reply with `Saved: .project-records/<sub-dir>/<file>.md`.
+4. Read `.project-records/` content only through the exact-path rules in
+   `docs/ai/REVIEW_MODE_PROTOCOL.md`.
+
+The human continues the same review chain by passing the exact `Saved:` path
+from the prior response.
+If content is pasted without a concrete `.project-records/...` path, the agent
+must treat it as a new review chain unless the human also provides
+`Chain path: .project-records/...`.
+Each agent in the same chain saves its response in the same sub-directory.
+
+Protocol: `docs/ai/REVIEW_MODE_PROTOCOL.md`
+
+---
+
 ## Multi-Agent Review
 
 For complex reasoning, high-risk changes, or uncertainty in interpretation,

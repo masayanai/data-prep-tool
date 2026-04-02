@@ -31,6 +31,7 @@ These are loaded as part of the boot sequence defined in `AGENTS.md`:
 | File | Type | When to use |
 |------|------|-------------|
 | `docs/ai/TASK_CONTRACT.md` | contract | when authoring or receiving a task |
+| `docs/ai/REVIEW_MODE_PROTOCOL.md` | protocol | when inquiry starts with `review mode:` |
 | `docs/ai/MULTI_AGENT_REVIEW_PROTOCOL.md` | protocol | when applying multi-agent review |
 | `docs/ai/REQUEST_PACKAGING_CONTRACT.md` | contract | when packaging a request |
 | `docs/ai/prompts/PROMPT_md_output.md` | prompt contract | when Markdown output is requested |
