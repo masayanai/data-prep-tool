@@ -1,0 +1,49 @@
+{
+    "case_id": "sample-001",
+    "tenant_id": "acme-demo",
+    "message": {
+      "message_id": "msg-1001",
+      "from": "Jane Smith <jane.smith@acme.com>",
+      "to": [
+        "support@example.org",
+        "John Q. Public <john.public@vendor.net>"
+      ],
+      "cc": [],
+      "subject": "Follow-up on invoice issue",
+      "body_text": "Customer called from (651) 555-0199 and asked to resend the invoice. Please reply to jane.smith@acme.com. Notes taken by Mary Johnson.",
+      "headers": {
+        "reply_to": "billing@acme.com",
+        "x_original_sender": "Jane Smith <jane.smith@acme.com>"
+      }
+    },
+    "customer": {
+      "customer_id": "cust-2001",
+      "name": "Jane Smith",
+      "phone": "+1 651-555-0199",
+      "contacts": [
+        {
+          "type": "primary",
+          "value": "jane.smith@acme.com"
+        },
+        {
+          "type": "assistant",
+          "value": "Mary Johnson <mary.johnson@acme.com>"
+        }
+      ]
+    },
+    "ticket": {
+      "ticket_id": "t-7788",
+      "owner_name": "Mary Johnson",
+      "callback_number": "651.555.0199 ext 2",
+      "notes": [
+        "Caller identified herself as Jane Smith.",
+        "If unreachable, try John Q. Public at john.public@vendor.net.",
+        "Shipping team mentioned alternate contact: Ms. Jane Smith."
+      ]
+    },
+    "audit": {
+      "created_by": "system",
+      "created_at": "2026-04-04T08:00:00Z",
+      "source_file": "inbox/export-2026-04-04.json"
+    }
+  }

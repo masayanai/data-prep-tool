@@ -1,0 +1,72 @@
+framing_id: "CASE-001"
+reviewer_agent: "Codex"
+reviewed_at: "2026-04-04T03:48:29Z"
+
+summary: >
+  The draft is directionally consistent with deterministic anonymization, but it
+  currently leaves unresolved paths where in-scope PII can survive, and it does
+  not define a testable validation story for names. The highest-risk gaps are
+  pass-through handling for ambiguous phone values, path-only name detection for
+  semi-structured email data, and the absence of a mandatory leak-detection
+  check for names before export.
+
+findings:
+  - id: "REV-001"
+    severity: "high"
+    location: "docs/review/cases/case-001/design_anonymization.md:48,139-140"
+    detail: >
+      The phone design explicitly allows ambiguous values to be "reject/leave
+      unchanged" and leaves fail-vs-skip behavior unresolved. Phone numbers are
+      in scope for this case and are always PII under the data-handling policy,
+      so any export path that preserves an unhandled phone value violates both
+      the acceptance criterion "個人特定情報が除去される" and the requirement that
+      structured phone fields be deterministically replaced or redacted before
+      output.
+  - id: "REV-002"
+    severity: "high"
+    location: "docs/review/cases/case-001/design_anonymization.md:11,51,71-73"
+    detail: >
+      The goals say the tool anonymizes structured or semi-structured inputs,
+      but name detection is limited to explicit configured paths and the draft
+      excludes the labeled-line fallback from v1. In email-shaped data, names
+      commonly appear inside semi-structured strings such as display headers or
+      "From:"-style fields, so the current design can remove the email address
+      while still leaving the person's name in the same in-scope record.
+  - id: "REV-003"
+    severity: "high"
+    location: "docs/review/cases/case-001/design_anonymization.md:104-110"
+    detail: >
+      Validation has concrete leak checks for emails and phones, but for names
+      it falls back to "only substituted at configured paths" plus golden tests
+      on sample rows. That is not a leak-detection gate for the output itself,
+      so the design does not provide a testable way to enforce the policy
+      invariant that no real names survive before fixture export.
+  - id: "REV-004"
+    severity: "medium"
+    location: "docs/review/cases/case-001/design_anonymization.md:57-65,108"
+    detail: >
+      The proposed email surrogate format is `anon_{8_hex}@example.invalid`, and
+      the validation rule only permits that format. The authoritative
+      data-handling policy currently specifies `fake_{hash8}@example.com` and
+      allows only `@example.com` addresses in the output invariant, so this
+      draft is not policy-aligned as written and would force either a policy
+      change or a failing validation contract downstream.
+  - id: "REV-005"
+    severity: "medium"
+    location: "docs/review/cases/case-001/design_anonymization.md:49,92-100"
+    detail: >
+      Referential consistency for names is defined as "same canonical name
+      string" rather than "same real person". Because canonicalization only
+      normalizes case and whitespace, common variants of one person such as
+      `Jane Smith`, `Jane A. Smith`, and `Ms. Jane Smith` will hash to different
+      surrogates. That weakens the policy requirement that the same real
+      identity map consistently within a consistency domain.
+
+questions_for_author: []
+
+artifact_refs:
+  branch: ""
+  commit: ""
+  paths:
+    - "docs/review/cases/case-001/framing_contract.yaml"
+    - "docs/review/cases/case-001/design_anonymization.md"

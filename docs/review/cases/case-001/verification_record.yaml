@@ -1,0 +1,18 @@
+framing_id: "CASE-001"
+validation_record_ref: "docs/review/cases/case-001/validation_record.yaml"
+verifier_agent: "Codex"
+verified_at: "2026-04-04T03:56:35Z"
+
+checks:
+  - "Validated accepted findings REV-001, REV-003, and REV-004 against draft_v2.md; each change is present in the revised design."
+  - "REV-001 fix confirmed: ambiguous phone values now halt the tool instead of passing through raw data."
+  - "REV-003 fix confirmed: validation now includes a deterministic gate for configured name paths before export."
+  - "REV-004 fix confirmed: email surrogate and validation rules now align with docs/data-handling-policy.md (`fake_{hash8}@example.com`)."
+  - "Compared draft_v1.md to draft_v2.md; revisions are narrowly scoped to the review findings and do not introduce a major regression in determinism, one-way behavior, or stated schema-preservation intent."
+  - "Checked partial responses REV-002 and REV-005: both are documented as limited v1 mitigations with explicit known limitations, not silently omitted."
+  - "No new critical issues were identified in draft_v2.md relative to the framing contract and repository safety/policy documents."
+result: "pass"
+residual_risks:
+  - "Name detection still does not cover unstructured free-text fields beyond display-name components of email addresses, so real names can still leak if such fields are exported in v1."
+  - "Referential consistency for one real person across name variants still depends on optional `name_aliases`; without those aliases, multiple surrogates for the same person remain possible."
+blockers: []

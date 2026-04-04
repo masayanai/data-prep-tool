@@ -5,7 +5,13 @@ reviewer_agent: ""
 reviewed_at: "" # ISO-8601
 
 summary: ""
-findings: [] # { id, severity: must_fix|should_fix|note, location, detail }
+
+findings:
+  - id: ""
+    severity: "" # high | medium | low
+    location: ""
+    detail: ""
+
 questions_for_author: []
 
 artifact_refs:

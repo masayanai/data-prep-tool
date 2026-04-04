@@ -1,0 +1,30 @@
+case_id: CASE-001
+objective: >
+  メールデータを匿名化するツールの最初の設計を作成する
+
+in_scope:
+  - メールアドレスの匿名化
+  - 名前の匿名化
+  - 電話番号の匿名化
+
+out_of_scope:
+  - 画像内テキスト
+  - 完全な自然言語理解
+  - 多言語完全対応
+
+acceptance_criteria:
+  - 個人特定情報が除去される
+  - データ構造が維持される
+  - 元データに復元できない
+
+constraints:
+  - deterministic な変換（同じ入力→同じ出力）
+  - reversible ではないこと
+
+review_lenses:
+  - correctness
+  - safety
+  - ambiguity
+  - testability
+
+approved: true

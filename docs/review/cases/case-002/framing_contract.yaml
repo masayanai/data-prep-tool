@@ -1,0 +1,66 @@
+case_id: CASE-002
+objective: >
+  nested JSON と semi-structured text を含む入力データに対して、
+  メールアドレス・名前・電話番号を匿名化する v1 設計を作成する
+
+in_scope:
+  - nested JSON オブジェクト内の configured paths にある email / person name / phone
+  - semi-structured text 内の明示的な email address
+  - email display-name 形式（例: "Jane Smith <jane@example.com>"）の name と email
+  - configured text fields に対する限定的な phone 検出
+  - deterministic な surrogate 生成
+  - one-way な匿名化
+  - consistency domain 内での referential consistency
+
+out_of_scope:
+  - 完全な free-text NER
+  - 多言語の一般文書対応
+  - 画像・PDF OCR
+  - 住所、勤務先、役職など追加PIIカテゴリの包括対応
+  - 元データ復元のための reversible mapping
+  - 人物同一性の完全自動解決
+  - 学習ベースモデルの導入
+
+input_assumptions:
+  - 入力は JSON または JSONL を想定する
+  - 一部フィールドは semi-structured text を含みうる
+  - configured paths は利用者が指定する
+  - configured text fields は利用者が指定する
+  - v1 では unknown fields 全体の全面スキャンは保証しない
+
+acceptance_criteria:
+  - configured paths 上の email / name / phone は出力前に匿名化または安全に失敗する
+  - configured text fields 上の email は出力前に匿名化される
+  - email display-name 形式に含まれる name は出力前に匿名化される
+  - ambiguous な configured phone 値は pass-through されず、明示エラーになる
+  - 同一入力値は同一 consistency domain で同一 surrogate に変換される
+  - surrogate は deterministic で one-way である
+  - 出力データ構造は可能な限り維持される
+  - policy violation を検出した場合は export を止める
+
+constraints:
+  - v1 は rule-based / config-driven を優先する
+  - silent pass-through を禁止する
+  - reversible mapping table を生成しない
+  - repository の data-handling policy に従う
+  - review workflow は repository template に従う
+
+review_lenses:
+  - correctness
+  - safety
+  - ambiguity
+  - testability
+  - scope control
+
+replayability_scope:
+  audit_replay: true
+  diff_traceability: true
+  execution_replay: false
+
+known_tradeoffs_to_review:
+  - free-text name detection をどこまで v1 に入れるべきか
+  - configured text fields の phone detection を regex ベースに限定して十分か
+  - name alias handling を config 任せにしてよいか
+  - consistency domain の単位をファイル / run / tenant のどれにするか
+
+approved: true
