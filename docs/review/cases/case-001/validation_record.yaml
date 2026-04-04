@@ -1,0 +1,74 @@
+framing_id: "CASE-001"
+review_record_ref: "docs/review/cases/case-001/review_record.yaml"
+validator_agent: "A"
+validated_at: "2026-04-04T04:15:00Z"
+
+responses:
+  - finding_id: "REV-001"
+    classification: "accepted"
+    rationale: >
+      Phone numbers are always PII per policy. Ambiguous values must not
+      pass through silently. Changed design: if a value at a configured
+      phone path cannot be normalized to E.164, the tool errors and names
+      the field. No silent skip.
+    design_change: >
+      §4 canonicalization table — removed "reject/leave unchanged";
+      replaced with "error: field cannot be normalized".
+      §12 open-point removed (resolved here).
+
+  - finding_id: "REV-002"
+    classification: "partially_accepted"
+    rationale: >
+      Display-name component of RFC 5322 addr-spec (e.g. "Jane Smith <j@x.com>")
+      is already parsed during email canonicalization. Extending that step to
+      also replace the display-name portion with the name surrogate is low cost
+      and closes the most common leak path. Full labeled-line sweep ("From: …")
+      in free text remains out of v1 scope per framing (no full NLP). Gap is
+      documented as a known limitation.
+    design_change: >
+      §6 detection — added: when email canon strips display-name, the extracted
+      name is also passed through name surrogate replacement.
+      §10 — added known-limitation note for names in unstructured free text.
+
+  - finding_id: "REV-003"
+    classification: "accepted"
+    rationale: >
+      A testable gate for names is required before export. Added a validation
+      rule: every configured name-path value in the output must match the
+      surrogate pattern `Person_[0-9a-f]{6}`. This does not catch names leaked
+      to non-configured paths, but provides a deterministic, automatable check
+      for the paths we control.
+    design_change: >
+      §9 validation — added name-path check: scan all configured name paths
+      in output; fail if any value does not match `Person_[0-9a-f]{6}`.
+
+  - finding_id: "REV-004"
+    classification: "accepted"
+    rationale: >
+      The authoritative policy specifies `fake_{hash8}@example.com`. The draft
+      deviated without proposing a policy update. Conforming to policy is simpler
+      and avoids a downstream conflict. Changed surrogate format.
+    design_change: >
+      §5 surrogate table — email format changed to `fake_{8_hex}@example.com`.
+      §9 validation allowlist updated to match `fake_[0-9a-f]{8}@example.com`.
+
+  - finding_id: "REV-005"
+    classification: "partially_accepted"
+    rationale: >
+      True variant resolution (Jane Smith vs Ms. Jane Smith) requires NER or a
+      manual alias table. NER is out of scope per framing. Added support for an
+      optional `name_aliases` list in config so users can manually group variants
+      to a single canonical form. Full automatic resolution is deferred.
+    design_change: >
+      §4 canonicalization — added optional `name_aliases` config entry
+      (list of alias → canonical mappings applied before HMAC).
+      §10 — documented automatic variant resolution as a known limitation.
+
+result: "pass"
+commands_run:
+  - "reviewed design against framing acceptance criteria"
+  - "checked alignment with docs/data-handling-policy.md"
+logs_or_notes: >
+  All 3 high findings addressed (2 accepted, 1 partially accepted).
+  Both medium findings addressed (1 accepted, 1 partially accepted).
+  Draft v2 updated in place. Ready for verification.

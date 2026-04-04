@@ -5,7 +5,11 @@ validation_record_ref: ""
 verifier_agent: ""
 verified_at: "" # ISO-8601
 
-checks: [] # e.g. "diff within framing allow list", "CI green"
-result: "pass" # pass | fail
+checks:
+  - finding_id: ""
+    status: "" # fixed | partially_fixed | not_fixed
+    note: ""
+
+result: "" # pass | fail
 residual_risks: []
 blockers: []

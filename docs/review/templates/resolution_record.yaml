@@ -1,0 +1,15 @@
+# Agent A after addressing review must-fix items and running QA.
+
+framing_id: ""
+review_record_ref: ""
+validator_agent: ""
+validated_at: "" # ISO-8601
+
+responses:
+  - finding_id: ""
+    classification: "" # accepted | rejected | partially_accepted
+    rationale: ""
+
+result: "" # pass | fail
+commands_run: []
+logs_or_notes: ""
