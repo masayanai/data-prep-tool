@@ -42,12 +42,8 @@ Please confirm all that apply:
 
 ## Multi-Agent Review Trace (if applied)
 
-<!-- Fill this section when the multi-agent review protocol was used.
-     Required for slice work; recommended for docs/chore work.
-     See docs/ai/MULTI_AGENT_REVIEW_PROTOCOL.md for the full protocol.
-     See docs/ai/README.md for the AI docs map and stable entrypoints.
-     This trace supports future "Development Activity as Auditable Events"
-     (see docs/architecture/platform-evolution-roadmap.md §4). -->
+<!-- Fill this section when the structured review workflow was used.
+     See docs/review/README.md and YAML records under docs/review/records/. -->
 
 - Drafter:
 - Reviewer:

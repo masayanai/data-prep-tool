@@ -1,0 +1,11 @@
+# Agent A after addressing review must-fix items and running QA.
+
+framing_id: ""
+review_record_ref: "" # path or id
+validator_agent: "A"
+validated_at: "" # ISO-8601
+
+must_fix_addressed: [] # finding id -> brief resolution
+commands_run: [] # e.g. "./scripts/qa.sh"
+result: "pass" # pass | fail
+logs_or_notes: ""
