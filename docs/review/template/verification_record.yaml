@@ -1,0 +1,11 @@
+# Verifier (Agent B or C) checks diff + validation record.
+
+framing_id: ""
+validation_record_ref: ""
+verifier_agent: ""
+verified_at: "" # ISO-8601
+
+checks: [] # e.g. "diff within framing allow list", "CI green"
+result: "pass" # pass | fail
+residual_risks: []
+blockers: []

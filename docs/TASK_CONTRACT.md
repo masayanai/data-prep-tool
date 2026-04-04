@@ -133,7 +133,7 @@ These rules reduce ambiguity in AI-facing task descriptions:
    pad with irrelevant exclusions.
 
 3. **Prefer concrete file paths over descriptions.**
-   Write `docs/ai/TASK_CONTRACT.md` not "the task contract document".
+   Write `docs/TASK_CONTRACT.md` not "the task contract document".
 
 4. **State verification method when non-obvious.**
    If an acceptance criterion requires a specific check (grep, test run,
@@ -241,13 +241,9 @@ This contract complements (does not replace):
 
 - **AGENTS.md** (O-1) — defines behavioral rules; references this contract
   for task-level field requirements
-- **ENGINEERING_PRACTICES.md** (O-2) — defines test depth and development
+- **ENGINEERING_PRACTICES.md** (O-3) — defines test depth and development
   workflow; this contract defines task input shape
-- **Handoff templates** (`docs/ai/templates/RED_TO_GREEN_HANDOFF_TEMPLATE.md`,
-  `docs/ai/templates/GREEN_TO_REFACTOR_HANDOFF_TEMPLATE.md`) — define phase
-  transition artifacts; this contract defines the task that initiates work
-- **SKILL_WORKFLOW.md** (O-4) — defines skill triggers and gates;
-  skills operate on tasks structured per this contract
+- **docs/review/** — YAML records for framing, review, validation, verification, and close
 - **GitHub issue templates** (`.github/ISSUE_TEMPLATE/`) — instantiate
   this contract for GitHub-based task tracking
 
@@ -256,7 +252,6 @@ This contract complements (does not replace):
 ## See Also
 
 - `AGENTS.md` — All-agent behavioral contract
-- `docs/ai/README.md` — AI docs map and stable entrypoints
+- `docs/review/README.md` — Minimal multi-agent review workflow
 - `docs/development/ENGINEERING_PRACTICES.md` — Development practices
-- `docs/ai/skills/SKILL_WORKFLOW.md` — Skill chain and trigger map
 - `.github/ISSUE_TEMPLATE/` — GitHub issue templates implementing this contract

@@ -45,7 +45,7 @@ non-negotiable behavioral constraints.
 ### O-2 — Domain Participation Rules + Permissions
 
 ```
-docs/ai/AI_RULES.md
+docs/AI_RULES.md
 ```
 
 What AI may and may not do in this repository. Canonical permissions policy.
@@ -87,6 +87,5 @@ substantive rules.
 
 The following are aids to understanding and hold no authority:
 
-- `docs/ai/README.md` — navigation map
-- `docs/ai/CONTEXT_SNAPSHOT_latest.md` — current phase context
+- `docs/review/README.md` — multi-agent review workflow guide
 - `.project-records/` — retained records (non-authoritative)

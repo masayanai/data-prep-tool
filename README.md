@@ -45,7 +45,10 @@ src/data_prep_tool/    - Source code
 tests/                 - Test suite
 docs/                  - Project documentation
   data-handling-policy.md  - PII rules and transformation invariants
-  ai/                  - AI agent infrastructure
+  AI_RULES.md              - AI permissions and domain constraints
+  TASK_CONTRACT.md         - Required task fields for agents
+  review/                  - Review workflow and YAML templates
+  architecture/            - Authority order and architecture notes
 scripts/qa.sh          - Full QA gate (must pass before commit)
 ```
 

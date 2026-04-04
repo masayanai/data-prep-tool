@@ -31,7 +31,7 @@ AI must not:
 
 AI agents may review and critique outputs from other agents.
 All such reviews are advisory and never authoritative.
-See `docs/ai/MULTI_AGENT_REVIEW_PROTOCOL.md` for the protocol.
+See `docs/review/README.md` for the minimal workflow and isolation rules.
 
 ---
 

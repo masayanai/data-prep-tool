@@ -4,7 +4,7 @@
 > regardless of tool (Claude, Codex, Cursor, Antigravity, ChatGPT, Gemini, etc.).
 >
 > For domain-specific constraints (what you may/may not touch),
-> see `docs/ai/AI_RULES.md`.
+> see `docs/AI_RULES.md`.
 
 ---
 
@@ -37,7 +37,7 @@ Every task assigned to an AI agent MUST include:
 If a task is missing required fields, the agent MUST request clarification
 before starting work. Do not infer missing boundaries.
 
-See `docs/ai/TASK_CONTRACT.md` for full contract shapes and templates.
+See `docs/TASK_CONTRACT.md` for full contract shapes and templates.
 
 ---
 
@@ -46,14 +46,14 @@ See `docs/ai/TASK_CONTRACT.md` for full contract shapes and templates.
 Every session MUST begin with:
 
 1. Read `ARCHITECTURE_PRINCIPLES.md` — system constitution (highest authority)
-2. Read `docs/ai/AI_RULES.md` — domain-specific participation rules and permissions
+2. Read `docs/AI_RULES.md` — domain-specific participation rules and permissions
 3. Read `docs/development/ENGINEERING_PRACTICES.md` — development practices
 4. Read `docs/data-handling-policy.md` — PII rules and output invariants
 
 Refer to as needed:
 
-- `docs/ai/README.md` — navigation map for docs/ai/
-- `docs/ai/CONTEXT_SNAPSHOT_latest.md` — current phase and recent progress
+- `docs/review/README.md` — minimal multi-agent review workflow and review mode
+- `docs/architecture/AUTHORITY_ORDER.md` — authority hierarchy
 
 ---
 
@@ -72,10 +72,9 @@ Refer to as needed:
 When an inquiry begins with `review mode:` (case-insensitive), the agent MUST:
 
 1. Record the full response as a Markdown file under `.project-records/`.
-2. Follow the naming and format rules in `docs/ai/REVIEW_MODE_PROTOCOL.md`.
+2. Follow naming and isolation rules in `docs/review/README.md`.
 3. End the visible reply with `Saved: .project-records/<sub-dir>/<file>.md`.
-4. Read `.project-records/` content only through the exact-path rules in
-   `docs/ai/REVIEW_MODE_PROTOCOL.md`.
+4. Read `.project-records/` content only through an exact path the human provided.
 
 The human continues the same review chain by passing the exact `Saved:` path
 from the prior response.
@@ -84,16 +83,12 @@ must treat it as a new review chain unless the human also provides
 `Chain path: .project-records/...`.
 Each agent in the same chain saves its response in the same sub-directory.
 
-Protocol: `docs/ai/REVIEW_MODE_PROTOCOL.md`
-
 ---
 
 ## Multi-Agent Review
 
 For complex reasoning, high-risk changes, or uncertainty in interpretation,
-agents SHOULD apply a structured multi-agent review process.
-
-Protocol: `docs/ai/MULTI_AGENT_REVIEW_PROTOCOL.md`
+agents SHOULD use the structured flow in `docs/review/README.md` (framing → draft → review → validation → verification → human close).
 
 ### When to Apply
 
@@ -105,7 +100,7 @@ Protocol: `docs/ai/MULTI_AGENT_REVIEW_PROTOCOL.md`
 ### Constraints
 
 - Review is advisory only — does not override authority documents
-- Final decisions must comply with `ARCHITECTURE_PRINCIPLES.md` and `AI_RULES.md`
+- Final decisions must comply with `ARCHITECTURE_PRINCIPLES.md` and `docs/AI_RULES.md`
 - Maximum 2 review cycles; escalate to human if unresolved
 
 ---
@@ -168,15 +163,14 @@ You MUST:
 - Concise, explicit, implementation-oriented
 - No speculative architecture
 - No silent scope expansion
-
-The Markdown output contract is `docs/ai/prompts/PROMPT_md_output.md`.
+- Use clear Markdown structure (headings, lists, code fences where helpful)
 
 ---
 
 ## See Also
 
-- `docs/ai/TASK_CONTRACT.md` — task field requirements
-- `docs/ai/AI_RULES.md` — domain constraints and permissions policy
-- `docs/ai/skills/SKILL_WORKFLOW.md` — skill chain and trigger map
+- `docs/TASK_CONTRACT.md` — task field requirements
+- `docs/AI_RULES.md` — domain constraints and permissions policy
+- `docs/review/README.md` — review workflow and templates
 - `.github/ISSUE_TEMPLATE/` — GitHub issue templates
 - `CLAUDE.md` / `CODEX.md` / `.cursorrules` / `ANTIGRAVITY.md` — agent boot files

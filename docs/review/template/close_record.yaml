@@ -1,0 +1,12 @@
+# Human decision after verification.
+
+framing_id: ""
+closed_by_human: ""
+closed_at: "" # ISO-8601
+
+decision: "" # merge | defer | reject | reopen
+pr_url: ""
+release_or_tag: ""
+
+follow_ups: []
+archive_paths: []

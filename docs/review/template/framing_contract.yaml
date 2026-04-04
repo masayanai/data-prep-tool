@@ -1,0 +1,18 @@
+# Copy to docs/review/records/<slug>/ and fill in. Human must set approved_by_human + approved_at before draft work.
+
+id: "" # e.g. 2026-04-03-gmail-adapter-skeleton
+title: ""
+author_human: ""
+created_at: "" # ISO-8601
+
+goal: ""
+non_goals: []
+acceptance_criteria: []
+
+files_in_scope:
+  allow: []
+  deny: []
+
+approved_by_human: false
+approved_at: ""
+notes: ""

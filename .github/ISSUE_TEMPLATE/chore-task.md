@@ -4,10 +4,10 @@ about: Infrastructure, tooling, or CI changes
 labels: chore
 ---
 
-<!-- This template implements the AI Task Contract (docs/ai/TASK_CONTRACT.md).
+<!-- This template implements the AI Task Contract (docs/TASK_CONTRACT.md).
      All fields marked REQUIRED must be filled before assigning to an AI agent.
      File scoping is mandatory when touching code, CI configs, or scripts.
-     See docs/ai/README.md for stable AI-facing documentation entrypoints. -->
+     See docs/review/README.md for multi-agent review workflow. -->
 
 ## Goal
 <!-- REQUIRED: 1–3 sentences. State the infra/tooling change delivered. -->

@@ -12,10 +12,8 @@
    must actually exist and must be consistent with its assigned authority level. An authority document that doesn't exist  
   yet should simply not appear in the hierarchy yet — don't list placeholders.
                                                                                                                            
-  3. Skill commit prefix convention                                
-  The skills (especially pr-summary-and-commit) hardcode the slice-XX RED/GREEN/REFACTOR commit convention from this
-  project. Decide the new project's commit convention first and update the skill before agents start using it, otherwise   
-  commit messages will be inconsistent from the first commit.
+  3. Commit conventions
+  Align `AGENTS.md` and boot files with the commit message style you want (e.g. conventional commits). Agents follow what is documented.
                                                                                                                            
   4. Two-track authority model (from ADR-0035)                     
   This project separates Design Authority documents (what the system is) from Operational Constraint documents (how agents
@@ -31,12 +29,9 @@
   Check .claude/settings.json for any hooks or tool permissions that are automation-platform-specific. These run
   automatically and could behave unexpectedly in a new context.                                                            
                                                                    
-  7. Don't port the snapshot — seed it                                                                                     
-  Use docs/ai/templates/CONTEXT_SNAPSHOT_TEMPLATE.md to write a v1 snapshot for the new project rather than copying a
-  versioned snapshot from this one. The snapshot is the single most important file for agent context continuity — starting 
-  from a clean, accurate seed is worth the extra effort.           
+  7. Boot list must match reality
+  Every path named in boot files (`CLAUDE.md`, `AGENTS.md`, etc.) must exist. Start minimal and add documents as you create them.           
                                                                                                                            
   ---                                                              
-  Short version: The behavioral infrastructure (AGENTS.md, skills, protocols, templates, issue/PR templates,
-  ENGINEERING_PRACTICES) ports cleanly. The boot files and authority maps need adaptation. Everything domain-specific      
-  (ADRs, architecture docs, snapshots) starts fresh.
+  Short version: The behavioral infrastructure (AGENTS.md, AI_RULES, review templates, issue/PR templates,
+  ENGINEERING_PRACTICES) ports cleanly. Boot files and authority maps need adaptation. Domain-specific architecture starts fresh.
